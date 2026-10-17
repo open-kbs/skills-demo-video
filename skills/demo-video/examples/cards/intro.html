@@ -1,0 +1,43 @@
+<!-- Example card for the demo-video skill (fictional brand "PartsHub24"). Copy video/cards/, change colours, logo, texts. Query params are set by card_take. -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="card.css">
+<style>
+  .stats { position: absolute; left: 140px; top: 170px; }
+  .stat { display: flex; align-items: baseline; gap: 28px; margin-bottom: 26px; }
+  .stat .n { font: 800 128px/1 'Fira Sans Extra Condensed', sans-serif; min-width: 330px; text-align: right; color: #ffd400; }
+  .stat .l { font: 700 64px/1 'Fira Sans Extra Condensed', sans-serif; text-transform: uppercase; }
+  .stat.one .n { color: #e0102f; }
+  #p1 { animation: out .6s ease-in forwards; animation-delay: var(--t1); }
+  #p2 { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 44px; }
+  #p2 > * { animation-delay: calc(var(--t1) + .3s); }
+  .logo.big { font-size: 128px; gap: 34px; } .logo.big b { width: 150px; height: 150px; font-size: 112px; }
+  .pills { display: flex; gap: 22px; }
+  .pill { font: 700 40px 'Fira Sans Extra Condensed', sans-serif; text-transform: uppercase; padding: 14px 34px; border: 3px solid #ffffff30; border-radius: 999px; }
+  .pill:nth-child(1) { animation-delay: calc(var(--t1) + 1.2s) !important; }
+  .pill:nth-child(2) { animation-delay: calc(var(--t1) + 1.7s) !important; }
+  .pill:nth-child(3) { animation-delay: calc(var(--t1) + 2.2s) !important; border-color: #e0102f; background: #e0102f; }
+</style></head>
+<body>
+  <div id="p1" class="stats">
+    <div class="stat a" style="animation-delay:.5s"><span class="n" id="cnt">0</span><span class="l">products</span></div>
+    <div class="stat a" style="animation-delay:2.9s"><span class="n">176</span><span class="l">brands</span></div>
+    <div class="stat a" style="animation-delay:5.4s"><span class="n">3</span><span class="l">stores</span></div>
+    <div class="stat one a" style="animation-delay:6.7s"><span class="n">1</span><span class="l">system</span></div>
+  </div>
+  <div id="p2">
+    <div class="logo big a"><b>P</b><span>PARTS<i>HUB</i>24</span></div>
+    <div class="pills"><span class="pill a">Online shop</span><span class="pill a">ERP</span><span class="pill a">AI agents</span></div>
+  </div>
+  <div class="stripe"></div>
+<script>
+  // t1 = seconds until the stats leave and the logo appears (card_take passes it from the voice-over length)
+  const t1 = Number(new URLSearchParams(location.search).get('t1') || 8.4);
+  document.documentElement.style.setProperty('--t1', t1 + 's');
+  const el = document.getElementById('cnt'); const target = 12480; const start = performance.now() + 500;
+  (function tick(now) {
+    const k = Math.min(1, Math.max(0, (now - start) / 1500)); const e = 1 - Math.pow(1 - k, 3);
+    el.textContent = Math.round(target * e).toLocaleString('en-US');
+    if (k < 1) requestAnimationFrame(tick);
+  })(performance.now());
+</script>
+</body></html>

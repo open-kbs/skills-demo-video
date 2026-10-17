@@ -1,0 +1,23 @@
+{
+  "language": "en-US",
+  "voice": "Charon",
+  "style": "Tone: warm, confident, energetic, like a high-quality TV commercial. Pace: calm, clear diction, natural pauses.",
+  "pronounce": { "PartsHub24": "Parts Hub twenty-four", "ERP": "E R P", "AI": "A I" },
+  "lines": [
+    { "id": "s01", "text": "Over twelve thousand products. One hundred seventy-six brands. Three stores. And one system that connects it all." },
+    { "id": "s02", "text": "This is PartsHub24: an online shop, an ERP and AI agents working together." },
+    { "id": "s03", "text": "The shop carries the whole catalogue. Search understands typos and part numbers." },
+    { "id": "s04", "text": "When a customer is not sure what they need, they ask Alex, the shop's AI assistant." },
+    { "id": "s05", "text": "Alex searches the real catalogue, compares products and recommends what fits the car. Prices come from the system, never invented." },
+    { "id": "s06", "text": "It calculates delivery to the nearest pickup point and adds the product to the cart in one sentence." },
+    { "id": "s07", "text": "Alex also talks. Around the clock, in the customer's language." },
+    { "id": "s08", "text": "Checkout takes seconds: pickup point, cash on delivery, done." },
+    { "id": "s09", "text": "Customers track their order themselves, without calling." },
+    { "id": "s10", "text": "In the back office the team sees everything in one place: revenue, margin, stock and today's tasks." },
+    { "id": "s11", "text": "The new order is at the top. Shipping label, documents and status in a few clicks. Stock is updated automatically." },
+    { "id": "s12", "text": "And the customer immediately sees that the parcel is on its way." },
+    { "id": "s13", "text": "The strongest part: the AI analyst. Ask in plain words and get a table and a chart from live data. No developer, no waiting." },
+    { "id": "s14", "text": "Point of sale in three stores, warehouses, suppliers, invoices, VAT and twenty-five ready reports." },
+    { "id": "s15", "text": "PartsHub24. Shop, ERP and AI, in one system. Ready to launch." }
+  ]
+}

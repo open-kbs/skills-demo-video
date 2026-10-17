@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:ital,wght@0,600;0,700;0,800;1,800&family=Golos+Text:wght@400;500;600;700&display=swap');
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1600px; height: 900px; overflow: hidden; background: #111113; color: #fff; font-family: 'Golos Text', sans-serif; }
+body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(#ffffff08 1px, transparent 1px), linear-gradient(90deg, #ffffff08 1px, transparent 1px); background-size: 48px 48px; }
+.cond { font-family: 'Fira Sans Extra Condensed', sans-serif; text-transform: uppercase; }
+.red { color: #e0102f; }
+.yel { color: #ffd400; }
+.stripe { position: fixed; left: 0; right: 0; bottom: 0; height: 18px; background: repeating-linear-gradient(135deg, #ffd400 0 22px, #111113 22px 44px); }
+.logo { display: inline-flex; align-items: center; gap: 18px; font: 800 64px 'Fira Sans Extra Condensed', sans-serif; letter-spacing: .01em; }
+.logo b { display: inline-flex; width: 76px; height: 76px; align-items: center; justify-content: center; background: #e0102f; transform: skewX(-8deg); font-style: italic; font-size: 56px; }
+.logo i { font-style: normal; color: #e0102f; }
+@keyframes up { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes out { to { opacity: 0; transform: translateY(-30px); } }
+@keyframes pop { 0% { opacity: 0; transform: scale(.85); } 100% { opacity: 1; transform: none; } }
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.a { opacity: 0; animation: up .7s cubic-bezier(.2,.8,.2,1) forwards; }

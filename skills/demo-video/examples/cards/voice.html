@@ -1,0 +1,60 @@
+<!-- Example card for the demo-video skill (fictional brand "PartsHub24"). Copy video/cards/, change colours, logo, texts. Query params are set by card_take. -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="card.css">
+<style>
+  .head { position: absolute; left: 110px; top: 80px; display: flex; align-items: center; gap: 22px; }
+  .head .ic { width: 74px; height: 74px; border-radius: 50%; background: #e0102f; display: grid; place-items: center; }
+  .head h1 { font: 800 64px/1 'Fira Sans Extra Condensed', sans-serif; text-transform: uppercase; }
+  .head p { font-size: 24px; color: #a1a1aa; margin-top: 6px; }
+  .who { position: absolute; display: flex; flex-direction: column; gap: 14px; width: 640px; }
+  .who .tag { font: 700 26px 'Fira Sans Extra Condensed', sans-serif; text-transform: uppercase; letter-spacing: .06em; color: #a1a1aa; display: flex; align-items: center; gap: 14px; }
+  .bubble { font-size: 34px; line-height: 1.35; padding: 26px 32px; border-radius: 26px; min-height: 100px; }
+  #cust { left: 110px; top: 250px; } #cust .bubble { background: #27272a; border-bottom-left-radius: 6px; }
+  #asst { right: 110px; top: 420px; width: 760px; } #asst .bubble { background: #fff; color: #18181b; border-bottom-right-radius: 6px; }
+  #asst .tag { color: #e0102f; justify-content: flex-end; }
+  .wave { display: inline-flex; gap: 5px; align-items: center; height: 30px; }
+  .wave i { width: 6px; background: currentColor; border-radius: 3px; height: 6px; transition: height .08s; }
+  .think { font-size: 24px; color: #a1a1aa; display: none; align-items: center; gap: 12px; }
+  .think::before { content: ''; width: 20px; height: 20px; border: 3px solid #a1a1aa; border-top-color: transparent; border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .prod { position: absolute; left: 110px; top: 560px; width: 560px; display: flex; gap: 24px; align-items: center; background: #fff; color: #18181b; padding: 22px; border-radius: 20px; opacity: 0; }
+  .prod img { width: 150px; height: 150px; object-fit: contain; }
+  .prod .nm { font-size: 24px; font-weight: 600; line-height: 1.3; }
+  .prod .pr { font: 800 44px 'Fira Sans Extra Condensed', sans-serif; color: #e0102f; margin-top: 8px; }
+  .prod .ok { font-size: 18px; color: #15803d; font-weight: 600; }
+  .mic { position: absolute; left: 50%; top: 430px; transform: translate(-50%, -50%); width: 200px; height: 200px; border-radius: 50%; background: #e0102f; display: grid; place-items: center; }
+  .mic::before, .mic::after { content: ''; position: absolute; inset: 0; border-radius: 50%; border: 4px solid #e0102f; animation: ring 2s ease-out infinite; }
+  .mic::after { animation-delay: 1s; }
+  @keyframes ring { from { transform: scale(1); opacity: .8; } to { transform: scale(1.9); opacity: 0; } }
+  .hide { opacity: 0; transition: opacity .5s; }
+  .show { opacity: 1 !important; transition: opacity .5s, transform .5s; transform: none !important; }
+</style></head>
+<body>
+  <div class="head a" style="animation-delay:.2s">
+    <div class="ic"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5"/></svg></div>
+    <div><h1>Ask Alex — <span class="yel">by voice</span></h1><p>A real conversation, recorded from the system</p></div>
+  </div>
+  <div class="mic" id="mic"><svg width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5"/></svg></div>
+  <div class="who hide" id="cust"><div class="tag"><span>Customer</span><span class="wave" id="w1"></span></div><div class="bubble" id="ct"></div></div>
+  <div class="who hide" id="asst"><div class="tag"><span class="wave" id="w2"></span><span>Alex · AI assistant</span></div><div class="think" id="think">Alex is searching the catalogue…</div><div class="bubble" id="mt" style="display:none"></div></div>
+  <div class="prod" id="prod" style="transform:translateY(30px)"><img src="product.jpg"><div><div class="nm">Wiper blade 600 mm with 6 adapters</div><div class="pr">11.75 €</div><div class="ok">● In stock</div></div></div>
+  <div class="stripe"></div>
+<script>
+  // timeline (seconds): n = intro narration, q = customer audio, gap = model latency, m = assistant audio; qt/at = the texts
+  const P = new URLSearchParams(location.search);
+  const n = +P.get('n') || 4.2, q = +P.get('q') || 5.6, gap = +P.get('gap') || 1.2, m = +P.get('m') || 14.4;
+  const Q = P.get('qt') || ''; const A = P.get('at') || '';
+  const $ = (id) => document.getElementById(id);
+  for (const w of ['w1', 'w2']) for (let i = 0; i < 9; i++) $(w).appendChild(document.createElement('i'));
+  const typeOut = (el, text, dur) => { const t0 = performance.now(); (function f(now) { const k = Math.min(1, (now - t0) / (dur * 1000)); el.textContent = text.slice(0, Math.ceil(text.length * k)); if (k < 1) requestAnimationFrame(f); })(t0); };
+  let active = null;
+  setInterval(() => { for (const w of ['w1', 'w2']) for (const b of $(w).children) b.style.height = (active === w ? 6 + Math.random() * 24 : 6) + 'px'; }, 90);
+  const at = (s, f) => setTimeout(f, s * 1000);
+  at(n - .4, () => { $('mic').classList.add('hide'); });
+  at(n, () => { $('cust').classList.add('show'); active = 'w1'; typeOut($('ct'), Q, q * .9); });
+  at(n + q, () => { active = null; $('asst').classList.add('show'); $('think').style.display = 'flex'; });
+  at(n + q + gap, () => { $('think').style.display = 'none'; $('mt').style.display = 'block'; active = 'w2'; typeOut($('mt'), A, m * .92); });
+  at(n + q + gap + 3, () => { $('prod').classList.add('show'); $('cust').style.opacity = .35; });
+  at(n + q + gap + m, () => { active = null; });
+</script>
+</body></html>

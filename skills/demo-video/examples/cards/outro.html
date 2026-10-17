@@ -1,0 +1,25 @@
+<!-- Example card for the demo-video skill (fictional brand "PartsHub24"). Copy video/cards/, change colours, logo, texts. Query params are set by card_take. -->
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="card.css">
+<style>
+  .wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 50px; }
+  .logo.big { font-size: 120px; gap: 32px; } .logo.big b { width: 140px; height: 140px; font-size: 104px; }
+  .cols { display: grid; grid-template-columns: repeat(3, 380px); gap: 26px; }
+  .col { border: 2px solid #ffffff22; border-radius: 22px; padding: 28px 30px; background: #18181b; }
+  .col h3 { font: 800 40px 'Fira Sans Extra Condensed', sans-serif; text-transform: uppercase; margin-bottom: 10px; }
+  .col p { font-size: 21px; color: #d4d4d8; line-height: 1.45; }
+  .col:nth-child(3) { border-color: #e0102f; }
+  .cta { font: 800 46px 'Fira Sans Extra Condensed', sans-serif; text-transform: uppercase; letter-spacing: .02em; }
+</style></head>
+<body>
+  <div class="wrap">
+    <div class="logo big a" style="animation-delay:.2s"><b>P</b><span>PARTS<i>HUB</i>24</span></div>
+    <div class="cols">
+      <div class="col a" style="animation-delay:.9s"><h3>Shop</h3><p>12,480 products, search by car, three couriers, card and cash on delivery</p></div>
+      <div class="col a" style="animation-delay:1.3s"><h3 class="yel">ERP</h3><p>Orders, warehouses, POS, suppliers, invoices and VAT</p></div>
+      <div class="col a" style="animation-delay:1.7s"><h3 class="red">AI agents</h3><p>Alex for customers and an analyst for the team</p></div>
+    </div>
+    <div class="cta a" style="animation-delay:2.6s">One platform. <span class="red">Ready to launch.</span></div>
+  </div>
+  <div class="stripe"></div>
+</body></html>
